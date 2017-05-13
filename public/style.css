@@ -1,0 +1,116 @@
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+h3 em {
+  font-size: 0.7em;
+}
+.game-board {
+  display: block;
+  position: relative;
+  padding: 2px;
+  width: 650px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-bottom: 0px;
+}
+.game-board .ball {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  top: 442px;
+  left: 313px;
+  background-color: blue;
+  z-index: 10;
+}
+.game-board .paddle {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  left: 275px;
+  height: 16px;
+  width: 96px;
+  border-radius: 8px;
+  background-color: black;
+}
+.game-board .brick {
+  display: block;
+  position: absolute;
+  top: 20px;
+  height: 19.0625px;
+  width: 76.25px;
+  background-color: black;
+}
+.game-board .brick.super {
+  background-color: #cc0000;
+}
+.game-board .brick.row-7 {
+  top: 142.375px;
+}
+.game-board .brick.row-6 {
+  top: 119.3125px;
+}
+.game-board .brick.row-5 {
+  top: 96.25px;
+}
+.game-board .brick.row-4 {
+  top: 73.1875px;
+}
+.game-board .brick.row-3 {
+  top: 50.125px;
+}
+.game-board .brick.row-2 {
+  top: 27.0625px;
+}
+.game-board .brick.row-1 {
+  top: 4px;
+}
+.game-board .brick.col-8 {
+  left: 565.75px;
+}
+.game-board .brick.col-7 {
+  left: 485.5px;
+}
+.game-board .brick.col-6 {
+  left: 405.25px;
+}
+.game-board .brick.col-5 {
+  left: 325px;
+}
+.game-board .brick.col-4 {
+  left: 244.75px;
+}
+.game-board .brick.col-3 {
+  left: 164.5px;
+}
+.game-board .brick.col-2 {
+  left: 84.25px;
+}
+.game-board .brick.col-1 {
+  left: 4px;
+}
+
+/*# sourceMappingURL=style.css.map */
