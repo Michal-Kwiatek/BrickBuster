@@ -155,11 +155,6 @@ class Sprite extends Obstacle {
         this.isVisible = false;
     }
 
-    // show() {
-    //     this.sprite.style.display = "";
-    //     this.isVisible = true;
-    // }
-
     checkCollision(anotherRect: Rect): Side{
         if(!this.isVisible) {
             return Side.None;
@@ -241,12 +236,9 @@ class Ball extends Sprite {
         this.dir.y = -Math.sin(angle) * this.velocity;
     }
 
-    // stop() {
-    //     this.dir = new Vector (0,0);
-    // }
-
     release() {
-        this.dir =new Vector (0,-this.velocity);
+        let random = Math.random() < 0.5 ? -1 : 1;
+        this.dir =new Vector(random, -this.velocity);
     }
 
     moveTo(rect: Rect) {
@@ -292,13 +284,15 @@ enum KeyCodes {
 class Game {
     loopInterval: number = 10;
     paddleStep: number = 30;
-    velocity: number = 5;
+    velocity: number = 6;
     normalBrickScore: number = 10;
     superBrickScore: number = 30;
+    bricksLeft: number = 0;
     livesLeft: number = 3;
+    score: number;
 
-    min_PercentOfSuperBricks = 10;
-    max_PercentOfSuperBricks = 40;
+    min_PercentOfSuperBricks: number = 10;
+    max_PercentOfSuperBricks: number = 40;
     
     ballElement: HTMLElement;
     boardElement: HTMLElement;
@@ -333,8 +327,10 @@ class Game {
     
             if(superBricksIndexes.indexOf(i) > -1) {
                 brick = new SuperBrick(<HTMLElement>bricks[i], this.superBrickScore);
+                this.bricksLeft += 2;
             } else {
                 brick = new Brick(<HTMLElement>bricks[i], this.normalBrickScore);
+                this.bricksLeft ++;
             }
 
             this.bricks.push(brick);
@@ -381,11 +377,19 @@ class Game {
         this.livesElement.textContent = "" + this.livesLeft;
         this.scoreElement.textContent = "0";
     }
-
+    
     addScore(points?: number) {
         points = points || 10;
-        let score = parseInt(this.scoreElement.textContent) + points;  
-        this.scoreElement.textContent = "" + score;
+        this.score = parseInt(this.scoreElement.textContent) + points;  
+        this.scoreElement.textContent = "" + this.score;
+    }
+    
+    won() {
+        setTimeout(()=> {
+            this.gameState = GameState.GameOver;
+            alert("You won with score: " + this.score);
+            location.reload();
+        }, 500)        
     }
 
     lostLive() {
@@ -466,6 +470,7 @@ class Game {
 
                 if (wasHit) {
                     this.addScore(brick.score);
+                    this.bricksLeft--;
 
                     if(brick instanceof SuperBrick) {
                         let index = this.bricks.indexOf(brick);
@@ -473,7 +478,11 @@ class Game {
                     } else {
                         brick.hide();
                     }
-                    
+
+                    if(this.bricksLeft == 0) {
+                        this.won();
+                    }
+
                     break;
                 }
             }
