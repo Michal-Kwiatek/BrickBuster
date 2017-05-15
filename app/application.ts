@@ -284,7 +284,7 @@ enum KeyCodes {
 class Game {
     loopInterval: number = 10;
     paddleStep: number = 30;
-    velocity: number = 6;
+    velocity: number = 5;
     normalBrickScore: number = 10;
     superBrickScore: number = 30;
     bricksLeft: number = 0;
