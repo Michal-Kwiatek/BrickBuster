@@ -2,4 +2,4 @@
 
 Used: Typescript, less, gulp
 
-live -> https://mkwiatek.github.io/BrickBuster/
+live -> https://michal-kwiatek.github.io/BrickBuster/
